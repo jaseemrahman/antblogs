@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Welcome To ANT Blogs</h1>
+<h1>WELCOME TO ANT BLOGS</h1>
 <h2>{{today}}</h2>
+<hr>
+<div class="row row-cols3 g-2>
+    {% for category in categories %}
+    <div class="col">
+        <div class="p-3 border">
+  <a href="{% url 'blog.list' %}" class="text-dark text-decoration-non"><h3>{{category.category_name}}</h3></a>
+    {{category.category_description}}
+        </div>
+    </div>
+    {% endfor %}
+<div>
 {% endblock%}

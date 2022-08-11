@@ -22,6 +22,7 @@ class Post(models.Model):
     updated=models.DateTimeField(auto_now=True)
 
     class Meta:
+        indexes=[models.Index(fields=['title','author','category'])]
         ordering=('-publish',)
     def __str__(self):
         return self.title  

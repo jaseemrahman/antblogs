@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{blogs.title}}</h2>
+    <h6>Author: {{blogs.author}}</h6>
+    <h6>Category: {{blogs.category}}</h6>
+    <p>body: {{blogs.body}}</p>
+    <p>Published: {{blogs.publish}}</p>
+    <p>Created: {{blogs.created}}</p>
+    <p>Updated: {{blogs.updated}}</p>
+
+    <a href="{% url 'blog.list' %}" class="btn btn-secondary">Back</a>
+    <a href="{% url 'blog.edit' pk=blogs.id %}" class="btn btn-secondary">Edit</a>
+    <a href="{% url 'blog.delete' pk=blogs.id %}" class="btn btn-danger">Delete</a>
+{% endblock %}

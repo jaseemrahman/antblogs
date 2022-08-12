@@ -3,14 +3,22 @@
 <h1>WELCOME TO ANT BLOGS</h1>
 <h2>{{today}}</h2>
 <hr>
-<div class="row row-cols3 g-2>
-    {% for category in categories %}
-    <div class="col">
-        <div class="p-3 border">
-  <a href="{% url 'blog.list' %}" class="text-dark text-decoration-non"><h3>{{category.category_name}}</h3></a>
-    {{category.category_description}}
+<div class="container">
+        <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12" style="background:green;">
+            {% for category in categories %}
+            <ul>
+            <a href="{% url 'blog.list' category.id %}" class="text-dark text-decoration-non"><h3><li>{{category.category_name}}</li></h3></a> 
+            </ul>
+            <p>{{category.category_description}}</p>
+            <hr>
+            {% endfor %}
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-12" style="background:white;" >
+          </div>
         </div>
-    </div>
-    {% endfor %}
-<div>
+      </div>  
 {% endblock%}
+
+
+

@@ -6,5 +6,5 @@
     <p>This action can't be undone</p>
     <input type="submit" class="btn btn-danger" value="Confirm"/>
 </form>
-<a href="{% url 'blog.list' %}" class="btn btn-secondary">Cancel</a>
+<a href="{% url 'blog.detail' blogs.id %}" class="btn btn-secondary">Cancel</a>
 {% endblock %}

@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
 # Create your models here.
+
+#model for category
 class Category(models.Model):
     category_name=models.CharField(max_length=100)
     category_description=models.CharField(max_length=250)
@@ -12,6 +14,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
+#model for blogs
 class Post(models.Model):
     title=models.CharField(max_length=250)
     author=models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')

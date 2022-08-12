@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
+#to add new blogs
 class BlogCreateView(LoginRequiredMixin,CreateView):
     model=Post
     success_url="/"
@@ -15,35 +16,37 @@ class BlogCreateView(LoginRequiredMixin,CreateView):
     template_name='blog_new.html'
     login_url='login'
 
-    def form_valid(self,form):
+    def form_valid(self,form):  
         self.object=form.save(commit=False)
         self.object.user=self.request.user
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
-class BlogListview(ListView):
-    model=Post
-    context_object_name='blogs'
-    template_name='blog_list.html'
-    # category=request.GET.get('category')
-    # if category==category:
-    #     blogs=Category.objects.filter(category_name=category)
-
-    # def queryset(self,pk):
-    #     return self.request.Category.objects.filter(category_id=pk)
+#to list by category
+def CategoryView(request,cats):
+    category_posts=Post.objects.filter(category=cats)
+    return render(request,'blog_list.html',{'cats':cats.title(),'category_posts':category_posts})
+    
+#for blogs detail view
 class BlogDetailview(DeleteView):
     model=Post
     context_object_name='blogs'
     template_name='blog_detail.html'    
 
-class BlogDeleteView(DeleteView):
+#to delete blogs
+class BlogDeleteView(LoginRequiredMixin,DeleteView):
     model=Post
     success_url="/"
     context_object_name='blogs'
-    template_name='blog_delete.html'     
+    template_name='blog_delete.html'
+    login_url='login'     
 
-class BlogUpdateView(UpdateView):
+#to edit blogs
+class BlogUpdateView(LoginRequiredMixin,UpdateView):
     model=Post
     success_url="/"
     form_class=PostForm
-    template_name ='blog_edit.html'       
+    context_object_name='blogs'
+    template_name ='blog_edit.html'  
+    login_url='login'   
+     

@@ -16,17 +16,17 @@ class PostForm(ModelForm):
         }
         
         # this function will be used for the validation
-    # def clean(self):
+    def clean(self):
     
-    #         # data from the form is fetched using super function
-    #         super(PostForm, self).clean()
+            # data from the form is fetched using super function
+            super(PostForm, self).clean()
             
-    #         # extract the fields ield from the data
-    #         title = self.cleaned_data['title']
-    #         author = self.cleaned_data['author']
-    #         category = self.cleaned_data['category']
-    #         body = self.cleaned_data['body'].replace("\r\n","<br/>")
-    #         publish = self.cleaned_data['publish']
+            # extract the fields ield from the data
+            title = self.cleaned_data['title']
+            author = self.cleaned_data['author']
+            category = self.cleaned_data['category']
+            body = self.cleaned_data['body'].replace("\r\n","<br/>")
+            publish = self.cleaned_data['publish']
     
-    #         # return any errors if found
-    #         return self.cleaned_data    
+            # return any errors if found
+            return self.cleaned_data    

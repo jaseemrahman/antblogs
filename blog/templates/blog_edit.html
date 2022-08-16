@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-{% block content %}<form method="post">
-    {{form.as_p}}
+{% block content %}
+<form name="myform" method="post" onsubmit="return validateForm()">
+    {{form.media}} 
+    {{form.as_p|safe}}
     {% csrf_token %}
-    <button type="submit"class="btn btn-primary">Submit</button>
-    
+    <button type="submit"class="btn btn-primary">Submit</button>  
 </form>
-    <a href="{% url 'blog.edit' blogs.id %}" class="btn btn-secondary">Cancel</a> 
+    <a href="{% url 'blog.detail' blogs.id %}" class="btn btn-secondary">Cancel</a> 
 {% endblock %}

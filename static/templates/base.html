@@ -7,6 +7,20 @@
         <title>ANT BLOGS
         {% block title %}
         {% endblock %}</title>
+        <script>  
+            function validateform(){  
+            var title=document.myform.name.value;  
+            var body=document.myform.body.value;  
+              
+            if (title==null || title==""){  
+              alert("Title can't be blank");  
+              return false;  
+            }else if(body.length<100  ){  
+                alert("Content is too short");  
+                return false; 
+            }  
+        }
+        </script>  
     </head>
     <body class="bg-light">
         <nav class="navbar navbar-success bg-success">

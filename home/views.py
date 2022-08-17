@@ -6,6 +6,9 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from blog.models import Category,Post
+from django.shortcuts import render
+from blog.models import Post
+from django.http import HttpResponse
 # Create your views here.
 
 #home page view.
@@ -15,6 +18,23 @@ def home(request):
         "categories":Category.objects.all(),
     } 
     return render(request,'home.html',dict_date)
+
+def create(request):
+    if request.method == 'POST':
+        print("test")
+        title = request.POST['title']
+        author = request.POST['author']
+        category = request.POST['category']
+        body = request.POST['body']
+        publish = request.POST['publish']
+        new_post=Post(title=title,author=author,category=category,body=body,publish=publish)
+        new_post.save()
+        success="blog created successfully"
+        print("test")
+        return HttpResponse(success)    
+           
+    else:
+        return HttpResponse("Request method is not a POST")
 
 #login view
 class loginInterfaceView(LoginView):

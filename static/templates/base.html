@@ -1,26 +1,37 @@
 {% load static %}
 <html>
-    <head>   
-         
+    <head>     
         <link rel='stylesheet' 
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
         <title>ANT BLOGS
         {% block title %}
-        {% endblock %}</title>
-        <script>  
-            function validateform(){  
-            var title=document.myform.name.value;  
-            var body=document.myform.body.value;  
-              
-            if (title==null || title==""){  
-              alert("Title can't be blank");  
-              return false;  
-            }else if(body.length<100  ){  
-                alert("Content is too short");  
-                return false; 
-            }  
+        {% endblock %}</title> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    //THIS ALERT FIRES WHEN THE PAGE LOADS
+    //NOT WHEN A BUTTON IS CLICKED
+    console.log("jquery");
+
+    $("#my_form").submit(function (event) {
+      //THIS ALERT FIRES WHEN THE SUBMIT BUTTON IS CLICK
+      //OR WHEN THE SUBMIT EVENT IS TRIGGERED THROUGH SOME OTHER MEANS
+      console.log("Validating form");
+      console.log(body)
+      // event.preventDefault();
+      var title = $("#id_title").val();
+      var body = $("#id_body").val();
+      if (title == "") {
+        alert("please enter the title");
+        return false;
+      }else if(body =="" ){ 
+        alert("please enter the blog content");
+        return false;
         }
-        </script>  
+    });
+  });
+</script>
     </head>
     <body class="bg-light">
         <nav class="navbar navbar-success bg-success">
@@ -41,4 +52,26 @@
                 {% endblock %}
               </div> 
     </body>
+<script type="text/javascript">
+        $(document).on('submit','#my_form',function(e){
+            e.preventDefault();
+
+            $.ajax({
+                type:'POST',
+                url:'/create',
+                data:{
+                    title:$('#id_title').val(),
+                    author:$('#id_author').val(),
+                    category:$('#id_category').val(),
+                    body:$('#id_body').val(),
+                    publish:$('#id_publish').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                    $('h2').html(data);
+                }
+            });
+
+        });
+    </script>
     </html>

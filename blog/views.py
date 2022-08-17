@@ -23,7 +23,8 @@ class BlogCreateView(LoginRequiredMixin,CreateView):
         self.object.save()
         # redirect , indicating data was inserted successfully
         return HttpResponseRedirect(self.get_success_url())
-    #for success url
+
+    # for success url
     def get_success_url(self):
         return reverse_lazy('blog.detail', kwargs={'pk': self.object.pk})
 
@@ -45,7 +46,7 @@ class BlogDeleteView(LoginRequiredMixin,DeleteView):
     success_url="/"
     context_object_name='blogs'
     template_name='blog_delete.html'
-    login_url='login'   
+    login_url='login'  
 
 #to edit blogs
 class BlogUpdateView(LoginRequiredMixin,UpdateView):

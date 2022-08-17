@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<form name="myform" method="post" onsubmit="return validateForm()">
+<h2></h2>
+<form id="my_form" method="post" novalidate>
+  <div class="form-row align-items-center">
     {{form.media}} 
-    {{form.as_p}}
+  <strong>  {{form.as_p}}</strong>
     {% csrf_token %}
-    <button type="submit"class="btn btn-primary">POST</button>
-    
+    <button type="submit" class="btn btn-primary">POST</button>
+    </div>
 </form>
 {% if form.errors %}
 <div class="alert alert-danger my-5">

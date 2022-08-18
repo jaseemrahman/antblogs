@@ -16,7 +16,6 @@ def home(request):
     dict_date={
         "today":datetime.today(),
         "categories":Category.objects.all(),
-        # "sub_catagories":Category.objects.filter(parent_id=sub)
     } 
     return render(request,'home.html',dict_date)
 

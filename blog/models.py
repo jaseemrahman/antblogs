@@ -1,4 +1,3 @@
-from unicodedata import category
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
@@ -11,12 +10,13 @@ from ckeditor.fields import RichTextField
 class Category(models.Model):
     category_name=models.CharField(max_length=100)
     category_description=models.CharField(max_length=250)
+    parent=models.ForeignKey("self", on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
         return self.category_name
 
 #model for blogs
-class Post(models.Model):
+class BlogPost(models.Model):
     title=models.CharField(max_length=250)
     author=models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')
     category=models.ForeignKey(Category,on_delete=models.CASCADE)

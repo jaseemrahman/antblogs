@@ -8,9 +8,18 @@
         <div class="col-md-4 col-sm-4 col-xs-12" style="background:green;">
             {% for category in categories %}
             <ul>
-            <a href="{% url 'blog.list' category.id %}" class="text-dark text-decoration-non"><h3><li>{{category.category_name}}</li></h3></a> 
+            <a href="{% url 'blog.list' category.id %}" class="text-dark text-decoration-non">
+            {% if cat.parent_id == "" %} 
+            <h3><li>{{category.category_name}}</li></h3>
+            {% endif %}
+            {% for cat in categories %}
+            {% if cat.parent_id == category.id %}
+              <ul><li>{{cat.category_name}}</li></ul>
+            {% else %}
+            {% endif %} 
+            {% endfor %}
+          </a>
             </ul>
-            <p>{{category.category_description}}</p>
             <hr>
             {% endfor %}
           </div>

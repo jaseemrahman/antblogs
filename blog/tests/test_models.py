@@ -1,10 +1,14 @@
-import pytest
-from mixer.backend.django import mixer
+from django.test import TestCase
+from django.template.defaultfilters import slugify
+from blog.models import BlogPost
 
-pytestmark = pytest.mark.django_db
 
+class ModelsTestCase(TestCase):
+    def test_post_has_slug(self):
+        """Posts are given slugs correctly when saving"""
+        blog = BlogPost.objects.create(title="My first post")
 
-class TestMyModel:
-    def test_mymodel(self):
-        my_model = mixer.blend("blog.Post")
-        assert my_model.pk == 1, "Should create a MyModel instance"
+        blog.author = "John Doe"
+        blog.save()
+        self.assertEqual(blog.slug, slugify(blog.title))
+

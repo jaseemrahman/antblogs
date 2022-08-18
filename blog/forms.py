@@ -1,12 +1,12 @@
 from tkinter.ttk import Widget
 from django import forms
-from .models import Post
+from .models import BlogPost
 from django.forms import ModelForm
 
 class PostForm(ModelForm):
     class Meta:
         # write the name of models for which the form is made
-        model= Post
+        model= BlogPost
         fields = '__all__'
 
         labels = {

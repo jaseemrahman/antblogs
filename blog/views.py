@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post,Category
+from .models import BlogPost,Category
 from django.http import Http404, HttpResponse, HttpResponseRedirect 
 from django.views.generic import ListView,DeleteView,CreateView,UpdateView
 from .forms import PostForm
@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 
 #to add new blogs
 class BlogCreateView(LoginRequiredMixin,CreateView):
-    model=Post
+    model=BlogPost
     form_class=PostForm
     template_name='blog_new.html'
     login_url='login'
@@ -31,18 +31,18 @@ class BlogCreateView(LoginRequiredMixin,CreateView):
 
 #to list by category
 def CategoryView(request,cats):
-    category_posts=Post.objects.filter(category=cats)
+    category_posts=BlogPost.objects.filter(category=cats)
     return render(request,'blog_list.html',{'cats':cats.title(),'category_posts':category_posts})
     
 #for blogs detail view
 class BlogDetailview(DeleteView):
-    model=Post
+    model=BlogPost
     context_object_name='blogs'
     template_name='blog_detail.html'    
 
 #to delete blogs
 class BlogDeleteView(LoginRequiredMixin,DeleteView):
-    model=Post
+    model=BlogPost
     success_url="/"
     context_object_name='blogs'
     template_name='blog_delete.html'
@@ -50,7 +50,7 @@ class BlogDeleteView(LoginRequiredMixin,DeleteView):
 
 #to edit blogs
 class BlogUpdateView(LoginRequiredMixin,UpdateView):
-    model=Post
+    model=BlogPost
     form_class=PostForm
     context_object_name='blogs'
     template_name ='blog_edit.html'  

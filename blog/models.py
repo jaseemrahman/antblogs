@@ -1,7 +1,9 @@
+from unittest.util import _MAX_LENGTH
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 # Create your models here.
@@ -20,7 +22,7 @@ class BlogPost(models.Model):
     title=models.CharField(max_length=250)
     author=models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
-    body=RichTextField(max_length=5000)
+    body=RichTextUploadingField(max_length=5000)
     publish=models.DateTimeField(default=timezone.now)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now=True)

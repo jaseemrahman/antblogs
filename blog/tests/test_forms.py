@@ -4,7 +4,7 @@ from blog.forms import PostForm
 class MyTests(TestCase):
     def test_forms(self):
         form_data = {'title': 'something',
-                    'author':'admin',
+                    'author':'2',
                     'category':'sports',
                     'body':'content',
                     'publish':'2022-08-18 05:11:00'}

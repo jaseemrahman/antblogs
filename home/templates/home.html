@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <h1><b>WELCOME TO ANT BLOGS</b></h1>
 <h2>{{today}}</h2>
 <hr>
@@ -21,7 +22,13 @@
             {% endfor %}
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12" style="background:light;" >
-            <img src="\static\images\Is-blogging-relevant-anymore.webp" width="700" height="500">
+            {% comment %} <img src="\static\images\Is-blogging-relevant-anymore.webp" width="700" height="500"> {% endcomment %}
+            <input type="file" id="image_input" accept="image/png,image/jpg">
+            <br>
+            <br>
+            <div id="display_image"></div>
+
+            <script src="{% static '/js/script.js'%}"></script>
           </div>
         </div>
       </div>  

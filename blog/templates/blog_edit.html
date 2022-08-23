@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<form method="post" id="my_form" novalidate>
-    {{form.media}} 
-    <strong>{{form.as_p|safe}}</strong> 
-    {% csrf_token %}
-    <button type="submit"class="btn btn-primary">Submit</button>  
-</form>
-    <a href="{% url 'blog.detail' blogs.id %}" class="btn btn-secondary">Cancel</a> 
+{% if user.id == blogs.author.id %}
+    <form method="post" id="my_form" novalidate>
+        {{form.media}} 
+        <strong>{{form.as_p|safe}}</strong> 
+        {% csrf_token %}
+        <button type="submit"class="btn btn-primary">Submit</button>  
+    </form>
+        <a href="{% url 'blog.detail' blogs.id %}" class="btn btn-secondary">Cancel</a> 
+{% else%}
+        You're not allowed here!
+{% endif %}
 {% endblock %}

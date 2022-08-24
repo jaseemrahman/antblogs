@@ -1,6 +1,8 @@
+#Import from the core django
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
+# Import from the third library
 from ckeditor.fields import RichTextField
 
 # Create your models here.
@@ -31,3 +33,13 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title  
+
+class Photo(models.Model):
+    image=models.ImageField(upload_to='photos/')
+    date = models.DateTimeField( auto_now_add=True)
+
+    class Meta:
+        ordering=['-date']
+
+    def __str__(self):
+        return str(self.image)

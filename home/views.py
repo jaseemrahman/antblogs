@@ -1,14 +1,17 @@
-from datetime import datetime
+# standard library import
 from django.shortcuts import render
-from datetime import datetime
 from django.contrib.auth.views import LoginView,LogoutView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
-from blog.models import Category,BlogPost
-from django.shortcuts import render
-from blog.models import BlogPost
 from django.http import HttpResponse
+from django.shortcuts import render
+# Related third-party imports
+from datetime import datetime
+# local application/library import
+from blog.models import BlogPost
+from blog.models import Category,BlogPost
+
 # Create your views here.
 
 #home page view.
@@ -20,7 +23,9 @@ def home(request):
     return render(request,'home.html',dict_date)
 
 def create(request):
+    # try/except
     try:
+        #ajax request to create a blog
         if request.method == 'POST':
             title = request.POST['title']
             author = request.user

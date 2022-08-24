@@ -1,11 +1,15 @@
+#Import from the core django
 from django.shortcuts import render
-from .models import BlogPost,Category
-from django.http import Http404, HttpResponse, HttpResponseRedirect 
-from django.views.generic import ListView,DeleteView,CreateView,UpdateView
-from .forms import PostForm
+from django.http import HttpResponseRedirect 
+from django.views.generic import DeleteView,CreateView,UpdateView
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.http import HttpResponse, JsonResponse
+#Import from local app/library
+from .models import BlogPost,Photo
+from .forms import PostForm
+
 
 # Create your views here.
 
@@ -15,7 +19,7 @@ class BlogCreateView(LoginRequiredMixin,CreateView):
     form_class=PostForm
     template_name='blog_new.html'
     login_url='login'
-
+#code to check the form is valid.
     def form_valid(self,form):  
         self.object=form.save(commit=False)
         self.object.user=self.request.user
@@ -59,4 +63,17 @@ class BlogUpdateView(LoginRequiredMixin,UpdateView):
 #for success url
     def get_success_url(self):
         return reverse_lazy('blog.detail', kwargs={'pk': self.object.pk})   
-     
+
+#view function to upload images
+def upload(request):
+    images=Photo.objects.all()
+    context={
+        'images':images
+    }
+    return render(request, 'upload_image.html', context)
+def file_upload(request):  
+    if request.method == 'POST':
+        my_file=request.FILES.get('file')
+        Photo.objects.create(image=my_file)
+        return HttpResponse('Images Uploaded Successfully')
+    return JsonResponse({'post':'false'})

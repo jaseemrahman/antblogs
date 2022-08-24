@@ -1,7 +1,7 @@
-from tkinter.ttk import Widget
-from django import forms
-from .models import BlogPost
+#Import from the core django
 from django.forms import ModelForm
+#Import from local app/library
+from .models import BlogPost
 
 class PostForm(ModelForm):
     class Meta:
@@ -25,10 +25,16 @@ class PostForm(ModelForm):
         category = self.cleaned_data['category']
         body = self.cleaned_data['body'].replace("\r\n","<br/>")
         publish = self.cleaned_data['publish']
-        # conditions to be met for the username length 
+        # conditions to be met for the blog body length 
         if len(body) < 100: 
             error_message = 'Minimum 100 characters required for body'
             self.add_error('body', error_message)
     
         # return any errors if found.
-        return self.cleaned_data    
+        return self.cleaned_data  
+
+#to upload images
+# class PhotoForm(forms.ModelForm):
+#     class Meta:
+#         model = Photo
+#         fields = ('file', )          

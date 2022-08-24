@@ -1,8 +1,8 @@
-from urllib import response
 from django.test import TestCase,Client
 from django.urls import reverse
-from blog.models import BlogPost
-from http import client
+
+from urllib import response
+
 
 class TestViews(TestCase):
 

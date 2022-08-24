@@ -1,4 +1,6 @@
-from django.urls import path,include
+#Import from the core django
+from django.urls import path
+# local application/library import
 from .import views
 
 urlpatterns = [

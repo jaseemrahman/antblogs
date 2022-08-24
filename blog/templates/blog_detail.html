@@ -9,6 +9,7 @@
     <p>Updated: {{blogs.updated}}</p>
 
     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    {# only author can edit or delete blogs #}
     {% if user.id == blogs.author.id %}
         <a href="{% url 'blog.edit' pk=blogs.id %}" class="btn btn-secondary">Edit</a>
         <a href="{% url 'blog.delete' pk=blogs.id %}" class="btn btn-danger">Delete</a>

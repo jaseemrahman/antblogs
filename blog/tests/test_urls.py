@@ -1,6 +1,8 @@
 from django.urls import reverse,resolve
-from blog.views import BlogCreateView,CategoryView,BlogDetailview,BlogDeleteView,BlogUpdateView
 from django.test import SimpleTestCase
+
+from blog.views import BlogCreateView,CategoryView,BlogDetailview,BlogDeleteView,BlogUpdateView
+
 
 class TestUrls(SimpleTestCase):
 

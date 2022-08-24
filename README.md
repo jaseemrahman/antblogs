@@ -20,3 +20,6 @@ building a blog application
 
 ![antblogs 7](https://user-images.githubusercontent.com/106687804/186314933-50a62859-abc3-4588-b2a1-e25094fadb0e.JPG)
 
+<h2>Upload images</h2>
+
+![upload images](https://user-images.githubusercontent.com/106687804/186415121-85bbe322-78a5-4cb9-ab0b-62215c8d6a74.JPG)

@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Import from the third library
 from ckeditor.fields import RichTextField
-from PIL import Image
+# from PIL import Image
 
 
 # Create your models here.
@@ -23,8 +23,6 @@ class Photo(models.Model):
     date = models.DateTimeField( auto_now_add=True)
 
     class Meta:
-        verbose_name = 'photo'
-        verbose_name_plural = 'photos'
         ordering=['-date']
 
     def __str__(self):

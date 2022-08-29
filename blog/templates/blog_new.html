@@ -6,8 +6,12 @@
     {{form.media}} 
   <strong>  {{form.as_p}}</strong>
     {% csrf_token %}
-    <button type="submit" class="btn btn-primary">POST</button>
+    <button type="submit" name="post"class="btn btn-primary">POST</button>
+    {% comment %} <button type="submit" name="pdf" class="btn btn-primary">PDF</button> {% endcomment %}
+    <a href="/blog/upload/photo/pdf">Generate PDF</a>
+    {% comment %} <a class="btn btn-success" href="{% url 'pdf' %}">Report</a> {% endcomment %}
     </div>
+
 </form>
 {% if form.errors %}
 <div class="alert alert-danger my-5">

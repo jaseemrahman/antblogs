@@ -23,17 +23,15 @@ class PostForm(ModelForm):
     def clean(self):
         # data from the form is fetched using super function
         super(PostForm, self).clean()
-        print("test 2")    
-        print(self.cleaned_data)
         # extract the fields ield from the data
-        cleaned_data= super().clean()
 
-        title = cleaned_data.get['id_title']
-        author = cleaned_data.get['author']
-        category =cleaned_data.get['category']
-        body = cleaned_data.get['body'].replace("\r\n","<br/>")
+        title = self.cleaned_data['title']
+        author = self.cleaned_data['author']
+        category =self.cleaned_data['category']
+        body =self. cleaned_data['body'].replace("\r\n","<br/>")
         # image = self.cleaned_data['image']
-        publish = cleaned_data.get['publish']
+        print('test point')
+        # publish = self.cleaned_data.get['publish']
         # conditions to be met for the blog body length 
         if len(body) < 100: 
             error_message = 'Minimum 100 characters required for body'

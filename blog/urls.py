@@ -10,5 +10,5 @@ urlpatterns = [
     path('blog/upload', views.upload,name='uploads'),
     path('blog/upload/file', views.file_upload),
     path('blog/upload/photo', views.photo_list,name="photo.list"),
-    path('blog/upload/photo/pdf', views.download_pdf,name="pdf"),
+    # path('blog/upload/photo/pdf', views.download_pdf,name="pdf"),
 ]
